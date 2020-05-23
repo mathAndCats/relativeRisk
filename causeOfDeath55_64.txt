@@ -1,0 +1,16 @@
+cause,numDeaths,total,perHundredThousand
+Malignant neoplasms,576525,206686838,278.9
+Diseases of heart,391099,206686838,189.2
+Accidents,106463,206686838,51.5
+Chronic lower respiratory diseases,89230,206686838,43.2
+Diabetes mellitus,71604,206686838,34.6
+Chronic liver disease and cirrhosis,67200,206686838,32.5
+Cerebrovascular diseases,61650,206686838,29.8
+Suicide,39559,206686838,19.1
+Septicemia,29218,206686838,14.1
+Nephritis nephrotic syndrome and nephrosis,27576,206686838,13.3
+Influenza and pneumonia,25928,206686838,12.5
+Essential hypertension and hypertensive renal disease,18799,206686838,9.1
+Viral hepatitis,15130,206686838,7.3
+Human immunodeficiency virus (HIV) disease,8827,206686838,4.3
+In situ neoplasms benign neoplasms and neoplasms of uncertain or unknown behavior,7793,206686838,3.8

@@ -1,0 +1,10 @@
+cause,numDeaths,total,perHundredThousand
+Accidents,111397,223371395,49.9
+Suicide,36855,223371395,16.5
+Assault,25134,223371395,11.3
+Malignant neoplasms,18419,223371395,8.2
+Diseases of heart,17550,223371395,7.9
+Chronic liver disease and cirrhosis,4420,223371395,2.0
+Diabetes mellitus,3959,223371395,1.8
+Cerebrovascular diseases,2881,223371395,1.3
+Human immunodeficiency virus (HIV),2653,223371395,1.2

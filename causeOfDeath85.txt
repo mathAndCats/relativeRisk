@@ -1,0 +1,16 @@
+cause,numDeaths,total,perHundredThousand
+Diseases of heart,1242183,31842908,3901.0
+Malignant neoplasms,513173,31842908,1611.6
+Alzheimer disease,374214,31842908,1175.2
+Cerebrovascular diseases,309397,31842908,971.6
+Chronic lower respiratory diseases,218815,31842908,687.2
+Influenza and pneumonia,120981,31842908,379.9
+Accidents,116135,31842908,364.7
+Nephritis nephrotic syndrome and nephrosis,86499,31842908,271.6
+Diabetes mellitus,84165,31842908,264.3
+Essential hypertension and hypertensive renal disease,71547,31842908,224.7
+Parkinson disease,63258,31842908,198.7
+Septicemia,55863,31842908,175.4
+Pneumonitis due to solids and liquids,46335,31842908,145.5
+In situ neoplasms benign neoplasms and neoplasms of uncertain or unknown behavior,26448,31842908,83.1
+Nutritional deficiencies,17673,31842908,55.5
