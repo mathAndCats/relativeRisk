@@ -91,12 +91,11 @@ def calcP_Death(pAgeGivenDeath, caseFatalRate, pSick):
     return pDeath;
 
 ###############################################################################
-def plotCauseOfDeathData(ax, dataArray, fields, ageArray, covidArray=np.zeros((8,100))):
+def plotCauseOfDeathData(ax, totalDeathArray, dataArray, fields, ageArray, covidArray=np.zeros((8,100))):
 
-    #ax1.set_yscale("Log");
     count = 0;
     for data in dataArray:
-        plotBar(ax, data, fields, count, covidArray[:,count]);
+        plotBar(ax, totalDeathArray[count], data, fields, count, covidArray[:,count]);
         count = count + 1;
     
     ax.set_xticks(range(len(ageArray)))
@@ -104,8 +103,9 @@ def plotCauseOfDeathData(ax, dataArray, fields, ageArray, covidArray=np.zeros((8
 
     
 ###############################################################################
-def plotBar(ax, rows, fields, count, covidCount):
+def plotBar(ax, totalPerHundredThous, rows, fields, count, covidCount):
 
+    totalPerHundredThous = float(totalPerHundredThous);
     numIndex = fields.index("perHundredThousand");   
     nameIndex = fields.index("cause");
 
@@ -113,24 +113,22 @@ def plotBar(ax, rows, fields, count, covidCount):
     deathSum = 0;
     labelArray = [];
     
-    totalPerHundredThous = 0;
     perHundredThousList = list();
     for row in rows:
-        totalPerHundredThous = totalPerHundredThous + float(row[numIndex]);
         perHundredThousList.append(float(row[numIndex]));
         
     percentList = [x / totalPerHundredThous for x in perHundredThousList];
 
-    numOther = 0;
+    numDeathsPlotted = 0;
     pIndex = 0;
     rowsToPlotList = list();
     for p in percentList:
-        if pIndex < len(percentList)-4:
-            numOther = numOther + float(rows[pIndex][numIndex]);
-        else:
+        if pIndex >= len(percentList)-4:
             rowsToPlotList.append(rows[pIndex]);
+            numDeathsPlotted = numDeathsPlotted + float(rows[pIndex][numIndex]);
         pIndex = pIndex + 1;
     
+    numOther = totalPerHundredThous - numDeathsPlotted;
     appendColorArray("Other");
     chosenColor = getColor("Other");
     ax.bar(count, numOther, bottom=0, color=chosenColor) ;
@@ -213,6 +211,10 @@ ax.set_ylabel("Probability of Death from COVID-19 (log scale)")
 ############################################################################### 
 
 # Plot Cause of Death by age (with and without COVID)
+totalDeathData, totalDeathFields = extractCauseOfDeathData(filename='totalDeaths.txt');
+totalDeathData = np.array(totalDeathData);
+totalDeathArray = totalDeathData[:,totalDeathFields.index('perHundredThous')];
+totalDeathArray = totalDeathArray[::-1] ; # reverse array
 data1, fields = extractCauseOfDeathData('causeOfDeath25_34.txt');
 data2, fields = extractCauseOfDeathData('causeOfDeath35_44.txt');
 data3, fields = extractCauseOfDeathData('causeOfDeath45_54.txt');
@@ -224,8 +226,8 @@ data7, fields = extractCauseOfDeathData('causeOfDeath85.txt');
 dataArray = (data1,data2,data3,data4,data5,data6,data7);
 
 f, (ax1, ax2) = plt.subplots(1, 2, sharey=False)
-plotCauseOfDeathData(ax1, dataArray[0:4], fields, reAges[1:5]);
-plotCauseOfDeathData(ax2, dataArray[4:7], fields, reAges[5:8]);
+plotCauseOfDeathData(ax1, totalDeathArray[0:4], dataArray[0:4], fields, reAges[1:5]);
+plotCauseOfDeathData(ax2, totalDeathArray[4:7], dataArray[4:7], fields, reAges[5:8]);
 
 custom_lines = list();
 index = 0;
@@ -238,8 +240,8 @@ ax1.legend(custom_lines, nameList);
 pDeathArray = np.array(pDeath);
 
 f, (ax1, ax2) = plt.subplots(1, 2, sharey=False)
-plotCauseOfDeathData(ax1, dataArray[0:4], fields, reAges[1:5], pDeathArray[:,1:5]);
-plotCauseOfDeathData(ax2, dataArray[4:7], fields, reAges[5:8], pDeathArray[:,5:8]);
+plotCauseOfDeathData(ax1, totalDeathArray[0:4], dataArray[0:4], fields, reAges[1:5], pDeathArray[:,1:5]);
+plotCauseOfDeathData(ax2, totalDeathArray[4:7], dataArray[4:7], fields, reAges[5:8], pDeathArray[:,5:8]);
 
 custom_lines.append(Line2D([0], [0], color='Red', lw=4));
 nameList.append("COVID-19");
