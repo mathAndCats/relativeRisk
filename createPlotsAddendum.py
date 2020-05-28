@@ -4,6 +4,7 @@
 # importing csv module 
 import csv
 import matplotlib.pyplot as plt
+import matplotlib.lines as lines
 import numpy as np;
 
 fields = [] 
@@ -234,7 +235,7 @@ plotCauseOfDeathData(ax2, totalDeathArray[4:7], dataArray[4:7], fields, reAges[5
 custom_lines = list();
 index = 0;
 for name in nameList:
-    custom_lines.append(Line2D([0], [0], color=colorArray2[index], lw=4));
+    custom_lines.append(lines.Line2D([0], [0], color=colorArray2[index], lw=4));
     index = index + 1;
 
 ax1.legend(custom_lines, nameList);
@@ -245,7 +246,7 @@ f, (ax1, ax2) = plt.subplots(1, 2, sharey=False)
 plotCauseOfDeathData(ax1, totalDeathArray[0:4], dataArray[0:4], fields, reAges[1:5], pDeathArray[:,1:5]);
 plotCauseOfDeathData(ax2, totalDeathArray[4:7], dataArray[4:7], fields, reAges[5:8], pDeathArray[:,5:8]);
 
-custom_lines.append(Line2D([0], [0], color='Red', lw=4));
+custom_lines.append(lines.Line2D([0], [0], color='Red', lw=4));
 nameList.append("COVID-19");
 ax1.legend(custom_lines, nameList);
 
